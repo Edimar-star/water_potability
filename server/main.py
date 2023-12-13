@@ -10,7 +10,6 @@ CORS(app, origins=[ORIGIN_URL])
 @app.route("/", methods=["GET"])
 def home():
     values = ["ph", "Hardness", "Solids", "Chloramines", "Sulfate", "Conductivity", "OrganicCarbon", "Trihalomethanes", "Turbidity"]
-    print(request)
     for i, value in enumerate(values):
         values[i] = "{}: {}".format(value, float(request.args.get(value)))
     
@@ -21,4 +20,4 @@ def home():
     return jsonify({ "message": "Error en la prediccion" })
 
 if __name__ == "__main__":
-    app.run(port=3000,host="0.0.0.0",debug=True)
+    app.run(port=3000, debug=False)
