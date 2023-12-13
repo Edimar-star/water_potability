@@ -8,10 +8,11 @@ import os
 project_id = os.getenv("PROJECT_ID")
 dataset_name = os.getenv("DATASET_NAME")
 table_name = os.getenv("TABLE_NAME")
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'keyfile.json'
+workdir = os.getenv("WORKDIR")
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = workdir + '/data/keyfile.json'
 destination_table = f"{project_id}.{dataset_name}.{table_name}"
 
-creds = service_account.Credentials.from_service_account_file('keyfile.json')
+creds = service_account.Credentials.from_service_account_file(workdir + '/data/keyfile.json')
 client = bigquery.Client(credentials=creds, project=project_id)
 
 sql = f"SELECT * FROM {destination_table}"
@@ -41,4 +42,4 @@ print(f"Valores NP: {list(ytest).count(NP)}")
 print(f"Predicciones NP: {list(y_pred).count(NP)}")
 print(f'Score: {score}')
 
-joblib.dump(model,'/app/server/models/model_potability.joblib')
+joblib.dump(model, workdir + '/server/models/model_potability.joblib')

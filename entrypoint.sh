@@ -1,8 +1,9 @@
 #!/bin/bash
 
-if [ -f "$FILE_PATH" ]; then
-    python /app/data/load_data.py
-    python /app/data/train_model.py
+ROUTE="$(pwd)/data/keyfile.json"
+if [ -f "$ROUTE" ]; then
+    python ./data/load_data.py
+    python ./data/train_model.py
 fi
 
-python /app/server/main.py & streamlit run /app/client/main.py
+gunicorn -w 4 -b 0.0.0.0:3000 'server.main:app' & streamlit run ./client/main.py

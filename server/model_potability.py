@@ -1,8 +1,10 @@
 import numpy as np
 import graphene
 import joblib
+import os
 
-model_potability = joblib.load('/app/server/models/model_potability.joblib')
+workdir = os.getenv("WORKDIR")
+model_potability = joblib.load(workdir + '/server/models/model_potability.joblib')
 
 class Prediction(graphene.ObjectType):
   predicionPotability = graphene.String()
