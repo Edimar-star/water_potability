@@ -1,0 +1,7 @@
+__pycache__
+keyfile.json
+Dockerfile
+.gitignore
+run.sh
+venv
+.env
