@@ -17,7 +17,7 @@ columns = [
     "ph", "Hardness", "Solids", "Chloramines", "Sulfate", "Conductivity", 
     "Organic_carbon", "Trihalomethanes", "Turbidity", "Potability"
 ]
-df = pd.read_csv('water_potability.csv', usecols=columns)
+df = pd.read_csv('/app/data/water_potability.csv', usecols=columns)
 df = df.rename(columns={'Organic_carbon': 'OrganicCarbon'})
 df = df.fillna(df.median())
 df = df.map(lambda x: round(x, 2))

@@ -41,4 +41,4 @@ print(f"Valores NP: {list(ytest).count(NP)}")
 print(f"Predicciones NP: {list(y_pred).count(NP)}")
 print(f'Score: {score}')
 
-joblib.dump(model,'../server/models/model_potability.joblib')
+joblib.dump(model,'/app/server/models/model_potability.joblib')
